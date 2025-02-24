@@ -52,6 +52,7 @@ public class ListNode {
 		}
 
 		// Initialize lists for "left" and "right" half
+		System.out.println("--- About to mergesort: " + this);
 		ListNode[] halves = this.split();
 		ListNode halfA = halves[0];
 		ListNode halfB = halves[1];
@@ -69,7 +70,7 @@ public class ListNode {
 		while (halfA != null || halfB != null) {
 			// Add the next node in either halfA or halfB to merged, and
 			// update mergedTail as well.
-			if (halfA == null) {
+			if (halfA == null || (halfB != null && halfB.datum < halfA.datum)) {
 				if (mergedTail == null) {
 					merged = mergedTail = halfB;
 					halfB = halfB.next;
@@ -78,36 +79,18 @@ public class ListNode {
 					mergedTail.next = halfB;
 					mergedTail = mergedTail.next;
 					halfB = halfB.next;
-				}
-			} else if (halfB == null) {
-				if (mergedTail == null) {
-					merged = mergedTail = halfB;
-					halfA = halfA.next;
 					mergedTail.next = null;
-				} else {
-					mergedTail.next = halfA;
-					mergedTail = mergedTail.next;
-					halfA = halfA.next;
-				}
-			} else if (halfA.datum < halfB.datum) {
-				if (mergedTail == null) {
-					merged = mergedTail = halfB;
-					halfA = halfA.next;
-					mergedTail.next = null;
-				} else {
-					mergedTail.next = halfA;
-					mergedTail = mergedTail.next;
-					halfA = halfA.next;
 				}
 			} else {
 				if (mergedTail == null) {
 					merged = mergedTail = halfB;
-					halfB = halfB.next;
+					halfA = halfA.next;
 					mergedTail.next = null;
 				} else {
-					mergedTail.next = halfB;
+					mergedTail.next = halfA;
 					mergedTail = mergedTail.next;
-					halfB = halfB.next;
+					halfA = halfA.next;
+					mergedTail.next = null;
 				}
 			}
 		}
