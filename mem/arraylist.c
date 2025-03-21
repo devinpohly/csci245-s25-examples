@@ -22,6 +22,7 @@ void list_add(struct arraylist *list, int n) {
 		// grow!
 		int newcap = (list->capacity + 1) * 2;
 		list->arr = realloc(list->arr, newcap * sizeof(int));
+		list->capacity = newcap;
 	}
 
 	list->arr[list->size] = n;
@@ -79,7 +80,7 @@ int main(void)
 	list_add(l, 5);
 	list_add(l, 7);
 	list_add(l, 11);
-	printf("size 5 = %d\n", list_size(l));
+	printf("size 35 = %d\n", list_size(l));
 	printf("l[0] 2 = %d\n", list_get(l, 0));
 	printf("l[29] 11 = %d\n", list_get(l, 29));
 
