@@ -70,28 +70,21 @@ public class ListNode {
 		while (halfA != null || halfB != null) {
 			// Add the next node in either halfA or halfB to merged, and
 			// update mergedTail as well.
+			ListNode removed;
 			if (halfA == null || (halfB != null && halfB.datum < halfA.datum)) {
-				if (mergedTail == null) {
-					merged = mergedTail = halfB;
-					halfB = halfB.next;
-					mergedTail.next = null;
-				} else {
-					mergedTail.next = halfB;
-					mergedTail = mergedTail.next;
-					halfB = halfB.next;
-					mergedTail.next = null;
-				}
+				removed = halfB;
+				halfB = halfB.next;
+				removed.next = null;
 			} else {
-				if (mergedTail == null) {
-					merged = mergedTail = halfB;
-					halfA = halfA.next;
-					mergedTail.next = null;
-				} else {
-					mergedTail.next = halfA;
-					mergedTail = mergedTail.next;
-					halfA = halfA.next;
-					mergedTail.next = null;
-				}
+				removed = halfA;
+				halfA = halfA.next;
+				removed.next = null;
+			}
+
+			if (mergedTail == null) {
+				merged = mergedTail = removed;
+			} else {
+				mergedTail.next = removed;
 			}
 		}
 		System.out.println("merged: " + merged);

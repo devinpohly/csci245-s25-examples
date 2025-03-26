@@ -123,6 +123,11 @@ public class List {
 		System.out.println(l);
 		l.addFirst(6);
 		System.out.println(l);
+		l.addFirst(16);
+		l.addFirst(12);
+		l.addFirst(8);
+		l.addFirst(10);
+		l.addFirst(14);
 
 		System.out.println(l.get(1));
 		System.out.println(l.getR(3));
