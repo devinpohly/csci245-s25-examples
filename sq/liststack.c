@@ -60,6 +60,17 @@ int main(void) {
 	printf("5 == %d\n", x);
 	x = ls_peek(ls);
 	printf("2 == %d\n", x);
+
+	for (int i = 0; i < 51; i++) {
+		ls_push(ls, i);
+	}
+	printf("big countdown:");
+	for (int i = 0; i < 51; i++) {
+		x = ls_pop(ls);
+		printf(" %d", x);
+	}
+	printf("\n");
+
 	x = ls_pop(ls);
 	printf("2 == %d\n", x);
 	x = ls_pop(ls);

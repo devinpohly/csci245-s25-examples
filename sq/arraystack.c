@@ -2,7 +2,6 @@
 #include <stdlib.h>
 
 struct arraystack {
-	struct node *head;
 };
 
 struct arraystack *as_create() {
@@ -38,6 +37,17 @@ int main(void) {
 	printf("5 == %d\n", x);
 	x = as_peek(as);
 	printf("2 == %d\n", x);
+
+	for (int i = 0; i < 51; i++) {
+		as_push(as, i);
+	}
+	printf("big countdown:");
+	for (int i = 0; i < 51; i++) {
+		x = as_pop(as);
+		printf(" %d", x);
+	}
+	printf("\n");
+
 	x = as_pop(as);
 	printf("2 == %d\n", x);
 	x = as_pop(as);
