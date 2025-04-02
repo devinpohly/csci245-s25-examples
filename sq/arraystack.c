@@ -2,21 +2,39 @@
 #include <stdlib.h>
 
 struct arraystack {
+	int *arr;
+	int capacity;  // of the array
+	int size;  // of the list
 };
 
 struct arraystack *as_create() {
+	return calloc(sizeof(struct arraystack), 1);
 }
 
 void as_push(struct arraystack *as, int item) {
+	if (as->size + 1 > as->capacity) {
+		// grow!
+		int newcap = (as->capacity + 1) * 2;
+		as->arr = realloc(as->arr, newcap * sizeof(int));
+		as->capacity = newcap;
+	}
+
+	as->arr[as->size] = item;
+	as->size++;
 }
 
 int as_peek(struct arraystack *as) {
+	return as->arr[as->size - 1];
 }
 
 int as_pop(struct arraystack *as) {
+	as->size--;
+	return as->arr[as->size];
 }
 
 void as_destroy(struct arraystack *as) {
+	free(as->arr);
+	free(as);
 }
 
 int main(void) {
