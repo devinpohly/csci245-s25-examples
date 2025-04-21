@@ -1,0 +1,16 @@
+MOVI 1 r1
+
+OUT  r1
+
+MOVI 1 r2
+ADD  r2 r1
+
+MOV  r1 r3
+MOVI 11 r2
+SUB  r2 r3
+
+
+MOVI 3 r2
+JNZ  r3 r2
+
+HALT
