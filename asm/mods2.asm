@@ -15,11 +15,8 @@
 
 again:
 
-	MOVI mod r7
+	MOVI printmod r7
 	JAL r7
-
-
-	OUT r1
 
 	// i++
 	MOVI 1 r2
