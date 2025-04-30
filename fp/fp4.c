@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+int g = 3;
+
+int foo(int x) {
+	return x + 1;
+}
+
+int bar(int x) {
+	return x * 3;
+}
+
+int baz(int x) {
+	return -x;
+}
+
+int callit(int (*f)(int), int x) {
+	return f(x);
+}
+
+int main(int argc, char **argv) {
+
+	int (*cf)(int (*)(int), int);
+	cf = callit;
+
+	//array of function pointers
+	int (*fa[3])(int);
+
+	fa[0] = foo;
+	fa[1] = bar;
+	fa[2] = baz;
+
+	printf("%d\n", foo(3));
+	for (int i = 0; i < 3; i++) {
+		printf("%d\n", cf(fa[i], 3));
+	}
+
+	return 0;
+}
